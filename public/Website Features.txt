@@ -1,0 +1,26 @@
+https://www.realtyshares.com/
+homepage - 3 clear benefits
+dynamic bar graph
+
+padding: top right bottom left
+
+
+logo specs:
+blue - #2262aa
+green - 
+
+2. property boxes on homepage with dynamic %
+
+put plain white bg on all 4 blacks
+fade in animation - how it works
+menu cross button bug
+
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+server and mysql ip:
+103.235.104.91
+
+> either change typeform for express interest or redirect to online signature of document
