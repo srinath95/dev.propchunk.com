@@ -1,0 +1,30 @@
+[
+{
+"type":"FOR SALE",
+"rooms":"3 ROOMS",
+"beds":"5 BEDS",
+"area":"500 SQ. FT",
+"apartment":"VBHC GREENWOODS",
+"description":"LOREUM IPSGKDFSJHCBHJ FDGECFTYSHJVS",
+"price":"4000"
+},
+{
+"type":"FOR SALE",
+"rooms":"3 ROOMS",
+"beds":"5 BEDS",
+"area":"500 SQ. FT",
+"apartment":"VBHC GREENWOODS",
+"description":"LOREUM IPSGKDFSJHCBHJ FDGECFTYSHJVS",
+"price":"4000"
+},
+{
+"type":"FOR SALE",
+"rooms":"3 ROOMS",
+"beds":"5 BEDS",
+"area":"500 SQ. FT",
+"apartment":"VBHC GREENWOODS",
+"description":"LOREUM IPSGKDFSJHCBHJ FDGECFTYSHJVS",
+"price":"4000"
+
+}
+]
