@@ -261,7 +261,7 @@ include('action-form.php')
 							-->
 							<div class="form-group">
 							<label for "">Upload Due Diligence Document</label>
-							<input type="file" name="DueDiligenceReportURL" id="DueDiligenceReportURL" required>
+							<input type="file" name="DueDiligenceReportURL" id="DueDiligenceReportURL" accept=".pdf ,.docx" required>
 							</div>
 							
 							<div class="form-group">
