@@ -75,6 +75,8 @@
 	<script src="<?php echo base_url('/bootstrap/js/wow.min.js');?>"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url('/bootstrap/js/custom.js');?>"></script>
-
+    <!--ADDED FOR GIF LOADING ICON -->
+    <script src="<?php echo base_url('http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js');?>"></script>
+    <script src="<?php echo base_url('http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js');?>"></script>
 </body>
 </html>
