@@ -1,0 +1,48 @@
+[
+{
+"imageurl":"http://www.nrc-cnrc.gc.ca/obj/images/achievements-realisations/highlights-saillants/2010-2010/green_building-batiment_ecologique_1.jpg",
+"term":"12 months",
+"yield":"10%",
+"locality":"Virar,MH",
+"apartment":"VBHC GREENWOODS",
+"description":"Property Description",
+"price":"25 Lakhs"
+},
+{
+"imageurl":"http://www.eschervictoria.com/wp-content/uploads/2014/06/ESR-building-exterior.jpg",
+"term":"12 months",
+"yield":"10%",
+"locality":"Virar,MH",
+"apartment":"D DEFINITY",
+"description":"Property Description",
+"price":"50 Lakhs"
+},
+{
+"imageurl":"http://ms-development.co.za/wp-content/uploads/2015/05/green-building-district-wallpaper-user-1920x1200.jpg",
+"term":"12 months",
+"yield":"10%",
+"locality":"Virar,MH",
+"apartment":"RAHEJA MINDSPACE",
+"description":"Property Description",
+"price":"75 Lakhs"
+
+},
+{
+"imageurl":"https://blogs.intel.com/iot/files/2015/01/SmartBuilding.jpg",
+"term":"12 months",
+"yield":"10%",
+"locality":"Virar,MH",
+"apartment":"SEAWOODS PAVILION",
+"description":"Property Description",
+"price":"1 Crore"
+},
+{
+"imageurl":"https://www.chem.wisc.edu/deptfiles/content/CBP-UniversityAve-2.png",
+"term":"24 months",
+"yield":"20%",
+"locality":"Palghar,MH",
+"apartment":"HAWARE CENTURION",
+"description":"Property Description",
+"price":"1.25 Crore"
+}
+]
