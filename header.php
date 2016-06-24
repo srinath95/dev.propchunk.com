@@ -1713,6 +1713,11 @@ top tech companies in India
 
                 </style>
 	<!-- -->
+	<!--  style sheet for discover page-->
+    <link href="style-discover.css" rel="stylesheet">    
+
+	
+	<!-- -->
 	
 </head>
 
@@ -1736,7 +1741,7 @@ top tech companies in India
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#intro">Browse Project</a></li>
+        <li class="active"><a href="<?php echo site_url('Home/discover');?>">Browse Project</a></li>
         <li><a href="#about">Investor Protection</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn<b class="caret"></b></a>
