@@ -68,7 +68,7 @@
     <address class="text-left;">
                   <h5 id="text-left1">Invest</h5>
                         <ul class="list-group le text-left" >
-                            <li class="list-group-item le text-left" id="le"><a href="#">Browse Project</a></li>
+                            <li class="list-group-item le text-left" id="le"><a href="<?php echo site_url('Home/discover');?>">Browse Project</a></li>
                             <li class="list-group-item le text-left" id="le"><a href="#">Investor Protection</a></li>
                              
                                                  </ul>   
