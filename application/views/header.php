@@ -1678,7 +1678,7 @@ top tech companies in India
     <link href="<?php echo base_url('/bootstrap/css/style.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('/bootstrap/color/default.css');?>" rel="stylesheet">
 
-	<!--MOD -->
+	<!--ADDED BY JJAIN FOR FB/GOOGLE  COLORS -->
 	<style>
 	.blue
 	{
@@ -1694,14 +1694,36 @@ top tech companies in India
 	</style>
 	<!-- -->
 	
+	<!-- ADDED BY JJAIN-->
+	<style>
+	.no-js #loader { display: none;  }
+	.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+	.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(default.gif) center no-repeat #fff;
+}
+	
+	</style>
+	<!-- -->
+	
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
+	<!--
 	<div id="preloader">
 	  <div id="load"></div>
 	</div>
-
+	-->
+	<!-- NEW LOADING ICON-->
+	<div class="se-pre-icon"></div>
+	
+	<!-- -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
