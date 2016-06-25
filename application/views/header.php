@@ -1,6 +1,3 @@
-
-
-
 <html>
 	<head>
 	<title>#FractionalOwnership of Real Estate in India</title>
@@ -1667,6 +1664,9 @@ top tech companies in India
 
     
     <title></title>
+    <!--FAQ SLIDER-->
+     <link href="<?php echo base_url('/assets/css/tabandslidder.css');?>" rel="stylesheet" type="text/css">
+	
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css">
@@ -1678,58 +1678,55 @@ top tech companies in India
     <link href="<?php echo base_url('/bootstrap/css/style.css');?>" rel="stylesheet">
 	<link href="<?php echo base_url('/bootstrap/color/default.css');?>" rel="stylesheet">
 
-	<!--ADDED BY JJAIN FOR FB/GOOGLE  COLORS -->
-	<style>
-	.blue
-	{
-		color:white;
-		background-color:blue;
-	}
-	
-	.red{
-		color:white;
-		background-color:red;
-		
-	}
-	</style>
+	<!--MOD -->
+	 <style>
+
+                .blue
+
+                {
+
+                                color:white;
+
+                                background-color:#3b5998;
+
+                }
+
+               
+
+                .red{
+
+                                color:white;
+
+                                background-color:#d34836;
+
+                               
+
+                }
+
+               
+
+                *{
+
+                                border-radius:0px !important;
+
+                }
+
+                </style>
 	<!-- -->
+	<!--  style sheet for discover page-->
+    <link href="style-discover.css" rel="stylesheet">    
+
 	
-	<!-- ADDED BY JJAIN-->
-	<style>
-	.no-js #loader { display: none;  }
-	.js #loader { display: block; position: absolute; left: 100px; top: 0; }
-	.se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(default.gif) center no-repeat #fff;
-}
-	
-	</style>
-	<script>
-	$(window).load(function() {
-		// Animate loader off screen
-		$(".se-pre-con").fadeOut("slow");;
-	});
-	</script>
 	<!-- -->
 	
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
 	<!-- Preloader -->
-	<!--
 	<div id="preloader">
 	  <div id="load"></div>
 	</div>
-	-->
-	<!-- NEW LOADING ICON-->
-	<div class="se-pre-icon"></div>
-	
-	<!-- -->
+
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header page-scroll">
@@ -1744,19 +1741,42 @@ top tech companies in India
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#intro">Browse Project</a></li>
+        <li class="active"><a href="<?php echo site_url('Home/discover');?>">Browse Project</a></li>
         <li><a href="#about">Investor Protection</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn<b class="caret"></b></a>
           <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="<?php echo site_url('');?>">How it works</a></li>
+            <li><a href="#">How it works</a></li>
             <li><a href="<?php echo site_url('Home/faq');?>">FAQ's</a></li>
             <li><a href="<?php echo site_url('Home/about_us');?>">About us</a></li>
             <li><a href="<?php echo site_url('Home/contact');?>">Contact US</a></li>
-            <li><a href="<?php echo site_url('');?>">Blog</a></li>
+            <li><a href="#" target="_blank">Blog</a></li>
           </ul>
         </li>
-        <li><a href="<?php echo site_url('Home/auth');?>" style="background:#ed4933;color:white;font-size:12px">Login/Signup</a></li>
+        <li><?php
+// Load session library
+           $name= $this->session->userdata('id');
+            $n= $this->session->userdata('name');
+      if(null!==($this->session->userdata('id')))
+            {
+                echo'
+              <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Hi,&nbsp;'.$name.'<b class="caret"></b></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Change Password</a></li>
+            <li><a href="'.site_url('Auth/logout').'">Logout</a></li>
+          </ul>
+        </li> ';     
+            }
+            else
+            {  
+             echo' <a href="'.site_url('Home/auth').'" style="background:#ed4933;color:white;font-size:12px">Login/Signup</a>';
+               }
+
+?>
+</li>
 
       </ul>
             </div>
