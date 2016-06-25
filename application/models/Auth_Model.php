@@ -19,7 +19,7 @@ Class Auth_Model extends CI_Model {
 
 		$query = $this->db->where(['EmailId'=>$EmailId,'Password'=>$Password])->get('RegisteredUser');
 		if ($query->num_rows()) {
-			return $query->row()->RegisteredUserId;
+			return $query->row()->FisrtName;
 		} else {
 			return false;
 		}
