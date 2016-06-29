@@ -4,8 +4,8 @@
             </div>
         </div>
 
-		<div class="container">
-	    <div class="row col-lg-6">
+        <div class="container">
+        <div class="row col-lg-6">
     <div class="row col-lg-12" >
         <h5>Subscribe to Our NewsLetter</h5>
         </div>
@@ -30,14 +30,14 @@
 
  </div>
 
-	   <div class="row col-lg-2 ">
+       <div class="row col-lg-2 ">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     </div>
 
 
-    	<div class="row col-lg-4 ">
-			<div class="widget-contact">
-	
+        <div class="row col-lg-4 ">
+            <div class="widget-contact">
+    
                 <address>
                   <h5>We're on social networks</h5>
                         <ul class="company-social">
@@ -47,8 +47,8 @@
                 </address>                  
            
 
-			</div>	
-		</div>
+            </div>  
+        </div>
  <div class="row col-lg-12">
 &nbsp;
  </div>         
@@ -118,15 +118,15 @@
                 </address>      
   </div>        
     </div>
-    </div>	
-		 
+    </div>  
+         
         </div>
 
 
 
 
-	</section>
-	<!-- /Section: contact -->
+    </section>
+    <!-- /Section: contact -->
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -143,8 +143,8 @@ s0.parentNode.insertBefore(s1,s0);
     <!-- Core JavaScript Files -->
      <script src="<?php echo base_url('/bootstrap/js/jquery.min.js');?>"></script>
     <script src="<?php echo base_url('/bootstrap/js/bootstrap.min.js');?>"></script>
-    <script src="<?php echo base_url('/bootstrap/js/jquery.easing.min.js');?>"></script>	
-	<script src="<?php echo base_url('/bootstrap/js/jquery.scrollTo.js');?>"></script>
-	<script src="<?php echo base_url('/bootstrap/js/wow.min.js');?>"></script>
+    <script src="<?php echo base_url('/bootstrap/js/jquery.easing.min.js');?>"></script>    
+    <script src="<?php echo base_url('/bootstrap/js/jquery.scrollTo.js');?>"></script>
+    <script src="<?php echo base_url('/bootstrap/js/wow.min.js');?>"></script>
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url('/bootstrap/js/custom.js');?>"></script>

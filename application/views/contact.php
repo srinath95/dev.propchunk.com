@@ -29,8 +29,8 @@
                 
 			
 				<?php 
-				//$attributes = array('id'=>'contact-form','name'=>'contact-form','method'=>'POST','action'=>'DONT kNOW');
-				echo form_open('Home/contact_savedata');
+				$attributes = array('id'=>'contact','name'=>'contact','method'=>'POST');
+				echo form_open('Home/contact_savedata',$attributes);
 				?>
 				
                <!-- <form id="contact-form" name="contact-form" method="POST" action= "--><!--ASSUMPTION--> 
@@ -52,7 +52,7 @@
                                 </span>
 
 								<?php 
-								$attribute = array('type'=>'text','name'=>'Name','class'=>'form-control col-xs-4','id'=>'name','placeholder'=>'Enter name','required'=>'required');
+								$attribute = array('type'=>'text','name'=>'Name','class'=>'form-control col-xs-4','id'=>'Name','placeholder'=>'Enter name');
 								echo form_input($attribute);
 								?>
 								
@@ -75,7 +75,7 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
 								<?php
-								$attribut = array('type'=>'email','name'=>'EmailId','class'=>'form-control','id'=>'email','placeholder'=>'Enter email','required'=>'required');
+								$attribut = array('type'=>'text','name'=>'EmailId','class'=>'form-control','id'=>'EmailId','placeholder'=>'Enter email');
 								echo form_input($attribut);
 								?>
                                 <!--<input type="email" class="form-control" id="email" placeholder="Enter email" required="required" />--></div>
@@ -97,7 +97,7 @@
 
                        <?php
 
-                    $attribute = array('type'=>'tel','class'=>'form-control col-xs-4','name'=>'PhoneNumber','id'=>'phone','placeholder'=>'Enter phone number','required'=>'required');
+                    $attribute = array('type'=>'text','class'=>'form-control col-xs-4','name'=>'PhoneNumber','id'=>'PhoneNumber','placeholder'=>'Enter phone number');
 
                     echo form_input($attribute);
 
@@ -139,7 +139,7 @@
                             </select>-->
 
                               <?php
-                                    $attribu = array('type'=>'text','class'=>'form-control','name'=>'Subject','id'=>'subject','placeholder'=>'Subject','required'=>'required');                                             
+                                    $attribu = array('type'=>'text','class'=>'form-control','name'=>'Subject','id'=>'Subject','placeholder'=>'Subject');                                             
                                     echo form_input($attribu);
 
                              ?>
@@ -155,7 +155,7 @@
                             <label for="name" class="sr-only">
                                 Message</label>
 								<?php
-								$attrib = array('name'=>'Message','id'=>'message','class'=>'form-control','rows'=>'9','cols'=>'25','required'=>'required',
+								$attrib = array('name'=>'Message','id'=>'Message','class'=>'form-control','rows'=>'9','cols'=>'25',
                                 'placeholder'=>'Message');
 								echo form_textarea($attrib);
 								?>
@@ -222,5 +222,62 @@ infowindow.open(map,marker);
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
-</script>	
-			
+
+</script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
+      <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
+      
+<script type="text/javascript">
+
+
+
+
+$.validator.setDefaults({
+                submitHandler: function() {
+                       console.log('submited');
+                        form.submit();
+                }
+        });
+
+
+
+
+                 
+                // validate contact form on keyup and submit
+                 $('#contact').validate({
+                    debug: true,
+                        rules: {
+                                Name:"required",
+                                EmailId: {
+                                        required: true,
+                                        email: true
+                                },
+                                PhoneNumber:{
+                                        required: true,
+                                        number: true
+                                },
+                                Subject: 
+                                        "required",
+                                Message: 
+                                        "required"
+                                
+                        },
+                        messages: {
+                                Name: {
+                                    required:"Please enter your Name"
+                                },
+                                EmailId: {
+                                    required:"Please enter your valid email."  
+                                },
+                                PhoneNumber:{
+                                    required:"Please enter a valid PhoneNumber"},
+                                Subject: {
+                                        required: "Please enter a Subject"
+                                    },
+                                Message: {
+                                        required: "Please enter a message"                                
+                                }
+                            }
+                });
+</script>

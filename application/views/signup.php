@@ -24,7 +24,7 @@
 	                        		</div>
 									<div class="social-login">
 	                        	<div class="social-login-buttons ">
-		                        	<a class="btn btn-default btn-link-1-facebook center-block" href="#">
+		                        	<a class="btn btn-default btn-link-1-facebook center-block blue" href="<?= $link; ?>">
 		                        		<i class="fa fa-facebook pull-left"></i> Facebook
 		                        	</a>
 									<!--
@@ -33,7 +33,7 @@
 		                        	</a>
 									-->
 									<br />
-		                        	<a class="btn btn-default btn-link-1-google-plus center-block" href="#">
+		                        	<a class="btn btn-default btn-link-1-google-plus center-block red" href="#">
 		                        		<i class="fa fa-google-plus pull-left"></i> Google
 		                        	</a>
 	                        	</div>
@@ -47,16 +47,22 @@
 									<br />
 									<h3 class="text-center"> OR </h3>
 	                            </div>
+	                            <?php 
+	                            	if($this->session->flashdata('put_hash')){
+	                            		echo $this->session->flashdata('put_hash');
+	                        		}
+								?>
+
 	                            <div class="form-bottom">
 				                   <?php 
-								$attributes = array('id'=>'login-form','name'=>'login-form','method'=>'POST','action'=>' ','role'=>'form');
+								$attributes = array('id'=>'login','name'=>'login','method'=>'post','role'=>'form');
 								echo form_open('Auth/user_login_process');
 								?>
 								     <!--<form role="form" action="" method="POST" class="login-form" id="login-form" name="login-form">-->
 				                    	<div class="form-group">
 				                    		<label class="sr-only" for="form-username">Email</label>
 											<?php 
-											$attribute = array('type'=>'email','name'=>'EmailId','class'=>'form-control form-email','id'=>'form-email','placeholder'=>'Email','required'=>'required');
+											$attribute = array('type'=>'email','name'=>'EmailId1','class'=>'form-control form-email','id'=>'EmailId1','placeholder'=>'Email');
 											echo form_input($attribute);
 											?>
 				                        	<!--<input type="text" name="form-email" placeholder="Email" class="form-email form-control" id="form-email">-->
@@ -67,7 +73,7 @@
 				                        <div class="form-group">
 				                        	<label class="sr-only" for="form-password">Password</label>
 				                        	<?php
-											$attribute = array('type'=>'password','name'=>'Password','placeholder'=>'Password','class'=>'form-password form-control','id'=>'form-password','required'=>'required');
+											$attribute = array('type'=>'password','name'=>'password1','placeholder'=>'Password','class'=>'form-password form-control','id'=>'password1');
 											echo form_password($attribute);
 											?>
 											<!--<input type="password" name="form-password" placeholder="Password" class="form-password form-control" id="form-password">-->
@@ -83,6 +89,37 @@
 										?>
 										
 				                        <!--<button type="submit" class="btn" value="LOGIN">LOGIN</button>-->
+
+										<div class="row">&nbsp;</div>
+										<a href="#reset-form" class="row offset-1" data-toggle="collapse">Forgot Password?</a> 
+				                    </form>
+
+									<?php
+									$attribute11 = array('role'=>'form','class'=>'email-reset collapse','method'=>'POST','id'=>'reset-form','name'=>'reset-form');
+									echo form_open('Auth/put_hash',$attribute11); 
+									?>
+
+									<!--<form role="form" class="email-reset collapse" action="" method="POST" id="reset-form" name="reset-form" >-->
+									<p >Enter the email address associated with your account and we'll email you a link to reset your password</p>
+									  <div class="form-group">
+				                    		<label class="sr-only" for="EmailId">Email</label>
+
+				                    		<?php
+				                    		$attribute12 = array('type'=>'email','name'=>'EmailId','placeholder'=>'EmailId','class'=>'form-email form-control','id'=>'EmailId');
+				                    		echo form_input($attribute12);
+				                    		?>
+				                        	<!--<input type="email" name="EmailId" placeholder="Email" class="form-email form-control" id="EmailId">-->
+				                        <div id="sp3"></div>
+										</div>
+										<?php
+										$attribute13 = array('type'=>'submit','class'=>'btn','name'=>'resetbtn','value'=>'Reset Button');
+										echo form_submit($attribute13);
+										?>
+				                        <!--<button type="submit" class="btn" name="resetbtn" >Reset Password</button>-->
+	
+
+
+
 				                    </form>
 			                    </div>
 		                    </div>
@@ -109,7 +146,7 @@
 									-->
 									<div class="social-login">
 	                        	<div class="social-login-buttons text-center">
-		                        	<a class="btn btn-default btn-link-1-facebook center-block" href="#">
+		                        	<a class="btn btn-default btn-link-1-facebook center-block blue" href="#">
 		                        		<i class="fa fa-facebook pull-left"></i> Facebook
 		                        	</a>
 									<!--
@@ -118,7 +155,7 @@
 		                        	</a>
 									-->
 									<br />
-		                        	<a class="btn btn-default btn-link-1-google-plus center-block" href="#">
+		                        	<a class="btn btn-default btn-link-1-google-plus center-block red" href="#">
 		                        		<i class="fa fa-google-plus pull-left"></i> Google
 		                        	</a>
 	                        	</div>
@@ -219,6 +256,9 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>  
       <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.js"></script>
       <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
+
+
+<!--script for registartion-->
 <script type="text/javascript">
 
 $.validator.setDefaults({
@@ -228,15 +268,25 @@ $.validator.setDefaults({
                 }
         });
 
-       
+
+jQuery.validator.addMethod("laxEmail", function(value, element) {
+  // allow any non-whitespace characters as the host part
+  return this.optional( element ) || /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/.test( value );
+}, 'Please enter your valid email.');
+
+
+
+ $('form').each(function () {
+       			 
                 // validate signup form on keyup and submit
-                $("#register").validate({
+                 $(this).validate({
                         rules: {
                                 FirstName: "required",
                                 LastName: "required",
                                 EmailId: {
                                         required: true,
                                         email: true,
+                                        laxEmail:true,
                                         remote: {
 											        url: "<?php echo site_url('Verify/checkuser');?>",
 											        type: "post",
@@ -267,14 +317,14 @@ $.validator.setDefaults({
                                 LastName: "Please enter your lastname",
                                 EmailId: {
                                 	required:"Please enter your valid email.",
-    								remote: jQuery.validator.format(" This{0} is already register.")  
+    								remote: jQuery.validator.format(" {0} is already registered.")  
                                 },
                                 PhoneNumber:"Please enter a valid PhoneNumber",
                                 password: {
                                         required: "Please provide a password",
                                         minlength: "Your password must be at least 5 characters long"
                                 },
-                                Confirm_password: {
+                                ConfirmPassword: {
                                         required: "Please provide a password",
                                         minlength: "Your password must be at least 5 characters long",
                                         equalTo: "Please enter the same password as above"                                
@@ -282,5 +332,24 @@ $.validator.setDefaults({
                             }
                 });
 
+       
+                // validate signup form on keyup and submit
+                
+                 $(this).validate({
+                        rules: {
+                                EmailId1:{required: true,
+                                	laxEmail:true
+                                },
+                                password1: {required: true}
+                                
+                        },
+                        messages: {
+                                
+                                EmailId1: {required: "Please provide a Email Id"},
+                                password1: {required: "Please provide a password"}                                
+                               
+                            }
+                });
 
+});
 </script>

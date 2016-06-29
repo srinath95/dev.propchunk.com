@@ -1,9 +1,9 @@
 <html>
-	<head>
-	<title>#FractionalOwnership of Real Estate in India</title>
-	<meta charset="utf-8">		
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!-- Open Graphic -->
+    <head>
+    <title>#FractionalOwnership of Real Estate in India</title>
+    <meta charset="utf-8">      
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Open Graphic -->
     <meta property="og:title" content="PropChunk Crowd-Investing. Fractional Ownership of Real Estate" />
     <meta property="og:description" content="Invest in Mumbai Real Estate Developments from Rs. 1 Lakh. View listing now. " />
     <meta property="og:image" content="http://www.propchunk.com/images/banner.jpg" />
@@ -1656,30 +1656,30 @@ financial startups london,
 top financial startups,
 best financial startups,
 top tech companies in India
-">	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="PropChunk CrowdInvesting">
-	<meta name="description" content="Invest in Mumbai Real Estate Developments from Rs. 1 Lakh. View listing now.">
-	<meta name="copyright" content="Chunk Technologies Pvt. Ltd. copyright (c) 2016">
-		
+">  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="PropChunk CrowdInvesting">
+    <meta name="description" content="Invest in Mumbai Real Estate Developments from Rs. 1 Lakh. View listing now.">
+    <meta name="copyright" content="Chunk Technologies Pvt. Ltd. copyright (c) 2016">
+        
 
     
     <title></title>
     <!--FAQ SLIDER-->
      <link href="<?php echo base_url('/assets/css/tabandslidder.css');?>" rel="stylesheet" type="text/css">
-	
+    
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url('/bootstrap/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css">
 
     <!-- Fonts -->
     <link href="<?php echo base_url('/bootstrap/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url('/bootstrap/css/animate.css');?>" rel="stylesheet" />
+    <link href="<?php echo base_url('/bootstrap/css/animate.css');?>" rel="stylesheet" />
     <!-- Squad theme CSS -->
     <link href="<?php echo base_url('/bootstrap/css/style.css');?>" rel="stylesheet">
-	<link href="<?php echo base_url('/bootstrap/color/default.css');?>" rel="stylesheet">
+    <link href="<?php echo base_url('/bootstrap/color/default.css');?>" rel="stylesheet">
 
-	<!--MOD -->
-	 <style>
+    <!--MOD -->
+     <style>
 
                 .blue
 
@@ -1712,20 +1712,20 @@ top tech companies in India
                 }
 
                 </style>
-	<!-- -->
-	<!--  style sheet for discover page-->
+    <!-- -->
+    <!--  style sheet for discover page-->
     <link href="style-discover.css" rel="stylesheet">    
 
-	
-	<!-- -->
-	
+    
+    <!-- -->
+    
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-	<!-- Preloader -->
-	<div id="preloader">
-	  <div id="load"></div>
-	</div>
+    <!-- Preloader -->
+    <div id="preloader">
+      <div id="load"></div>
+    </div>
 
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
         <div class="container">
@@ -1755,8 +1755,8 @@ top tech companies in India
         </li>
         <li><?php
 // Load session library
+
            $name= $this->session->userdata('id');
-            $n= $this->session->userdata('name');
       if(null!==($this->session->userdata('id')))
             {
                 echo'
