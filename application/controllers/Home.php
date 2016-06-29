@@ -33,6 +33,7 @@ class Home extends CI_Controller {
 			$this->load->helper('form');
 			$this->load->helper('url');
 			$this->load->library('session');
+			
 
 	}
 
@@ -43,10 +44,31 @@ class Home extends CI_Controller {
 	}
 
 	public function auth(){
-		$this->load->view('header');
-		$this->load->view('signup');
-		$this->load->view('footer');
+		$this->load->library('facebook');
+		if($this->session->userdata('id')){
+			return redirect('Home/'); 
+		}
 
+		if ($this->facebook->logged_in())
+		{
+			$user = $this->facebook->user();
+
+			if ($user['code'] === 200)
+			{
+				//$this->session->set_userdata('login',true);
+				$this->session->set_userdata('id',$user['data']);
+				redirect('Test/dashboard');
+			}
+
+		}
+		
+		 else {
+	
+			$link['link'] = $this->facebook->login_url();		
+			$this->load->view('header');
+			$this->load->view('signup',$link);
+			$this->load->view('footer');
+		}
 	}
 
 	//function to load contact page
@@ -130,5 +152,19 @@ class Home extends CI_Controller {
 		$this->load->view('header');
 		$this->load->view('about-us');
 		$this->load->view('footer');
+	}
+
+	//function to load discover page 
+	public function discoverpage(){
+		$this->load->model('Getinfo');
+		$this->load->helper('file');
+		$result=$this->Getinfo->filljson();
+		$fp = fopen('./json_file/campaigndata.json', 'w+');
+		fwrite($fp, json_encode($result,JSON_PRETTY_PRINT));
+		//print_r($result);
+		$this->load->view('header');
+		$this->load->view('discover');
+		$this->load->view('footer');
+
 	}
 }

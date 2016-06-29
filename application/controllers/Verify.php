@@ -10,26 +10,39 @@ Class Verify extends CI_Controller {
 		$this->load->helper('form');
 	}
 
-	public function email_verify($hash){
+	public function email_verify($email,$hash){
 
-		$response=$this->Verify_Model->checkhash($hash);
+		
+		
+		$response=$this->Verify_Model->checkhash($email,$hash);
 		if($response==true){
-			return redirect('Home/');	
+			echo $response;
+			//return redirect('Home/');	
 		}else{
-			return redirect('');
+			echo $response;
+			//return redirect('');
 		}
 	}
 
-	public function forgetpassword($hash){
+	public function forget_password($email,$hash){
 		
-
-
+		$response=$this->Verify_Model->checkhash1($email,$hash);
+		if($response==true){
+			$fpdata['var'] = $email;
+		$this->load->view('header');
+		$this->load->view('changepass',$fpdata);
+		$this->load->view('footer');	
+		
+		}else{
+			echo "404 error page not found";
+		}
 	}
+
 
 	public function checkuser(){
 		$email=$this->input->post('EmailId');
 		$check = $this->Verify_Model->checkuser($email);
-		if($check==true){
+		if($check == true){
 
 			echo "false";
 		}else{
@@ -38,7 +51,7 @@ Class Verify extends CI_Controller {
 		}
 	}
 
-
+	
 
 
 

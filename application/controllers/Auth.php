@@ -1,34 +1,24 @@
 <?php
-
 Class Auth extends CI_Controller {
-
 	public function __construct() {
 		parent::__construct();
-
 		// Load form helper library
 		$this->load->helper('form');
-
 		// Load form validation library
 		$this->load->library('form_validation');
-
 		// Load session library
 		$this->load->library('session');
-
 		// Load database
 		$this->load->model('Auth_Model'); //Model of which contain all the database activity
 		
 		// Load email
 		$this->load->helper('email');
-
 		//load date 
 		$this->load->helper('date');
 	}
-
-
 	public function new_user_registration() {
 		$HashKey=md5(mt_rand());
 		$date = date('Y-m-d H:i:s');
-
 		$Password=hash('sha512',$this->input->post('password'));
 		$data = array(
 		'FirstName' => $this->input->post('FirstName'),
@@ -67,14 +57,10 @@ Class Auth extends CI_Controller {
 		}//end of the new_user_registration function
 	
 		
-
-
-
 		public function user_login_process() {
 			
 			$this->form_validation->set_rules('EmailId1','EmailId','required|trim|valid_email');
 			$this->form_validation->set_rules('password1','Password','required');
-
 			$this->form_validation->set_error_delimiters("<p class='text-danger'>","</p>");
 				if($this->form_validation->run()){
 					//successs
@@ -86,11 +72,8 @@ Class Auth extends CI_Controller {
 						//successful
 						//echo "Password match";
 						//$login_name = $this->Auth_Model->read_user_name($EmailId);
-
 						$this->session->set_userdata('id',$login_id);
-						$this->session->set_userdata('email',$EmailId);
 						//$this->session->set_userdata('name',$login_name);
-   
 						return redirect('Test/dashboard');
 					} else {
 						$data = "<p class='test-danger'>Username & Password Doent Match</p>";
@@ -104,19 +87,17 @@ Class Auth extends CI_Controller {
 				}
 		}
 
-	//end of the class
-
 	
-		// Logout from admin page
+			// Logout from admin page
 		public function logout() {
 
 		// Removing session data
 			//$sess_array = array('username' => '');
-			$this->session->unset_userdata('id');
+			//$this->session->unset_userdata('id');
+			$this->session->sess_destroy();
 			$data['message_display'] = 'Successfully Logout';
-            return redirect('Home/auth');
-          	}
-
+			return redirect('Home/auth');
+	}
 	public function put_hash(){
 		$HashKey=md5(mt_rand());
 		$email=$this->input->post('EmailId');
@@ -130,60 +111,30 @@ Class Auth extends CI_Controller {
 		$error=$this->create_email($sendmail);
 		$data = '<div class="alert alert-success"><p>Email has been sent to your registered EmailId!</p></div>';
 		$this->session->set_flashdata('put_hash',$data);
-
 		//echo $error;
 		return redirect('Home/auth');
-
 	}
-
 	public function changepassword(){
 		$EmailId=$this->input->post('EmailId');
 		$Password=hash('sha512',$this->input->post('password'));
 		$this->db->where('EmailId', $EmailId);
-		$this->db->update('RegisteredUser',['Password'=>$Password]);
-		$reponse=$this->Verify_Model->deletehash($EmailId);
+		$this->db->update('RegisteredUser',['Password'=>$Password,'HashKey'=>'']);
 		echo "password has been successfully changed";
 		return redirect('Home/auth');		
-
-	}
-	
-	public function changepassword1(){
-	
-		$EmailId=$this->session->userdata('email');
-		$Password1=hash('sha512',$this->input->post('OldPassword'));
-		$Password=hash('sha512',$this->input->post('NewPassword'));
-	   $login_id = $this->Auth_Model->login_valid($EmailId,$Password1);
-	   
-					if($login_id){
-				
-		$data = array(
-               
-               'Password' => $Password
-            );
-
-$this->db->where('EmailId', $EmailId);
-$this->db->update('RegisteredUser', $data);
-
-		echo "password has been successfully changed";
-		return redirect('Home/auth');		
-                 }
-                 else{
-                  echo"error";
-                   return redirect('Home/test1');
-                 }
 	}
 
-public function  new_user_subscription() {
+
+	public function  new_user_subscription() {
 	
 		$date = date('Y-m-d H:i:s');
-
+ 
+ 
 		$data = array(
 		'EmailId' => $this->input->post('EmailId1'),
 		'CreateUserId' => $this->input->post('EmailId1'),
-		'CreateDate' => $date
-		
+		'CreateDate' => $date		
 		);
-		$result = $this->Auth_Model->subscription_insert($data);
+		$result=$this->db->insert('Subscriber',$data);
 			if ($result == TRUE) {
 			//echo $error;
 			//code for email  
@@ -194,9 +145,9 @@ public function  new_user_subscription() {
 							$sendmail = array(
 				
 					'EmailId' => $email,
-					'flag'=>1
+					'flag'=>3
 					);
-				$this->create_email1($sendmail);
+				$this->create_email($sendmail);
 					//echo $error;
 			
 					redirect('Home/auth');	
@@ -206,9 +157,7 @@ public function  new_user_subscription() {
 				$this->session->set_flashdata('message',$data); 
 				redirect('Home/auth');
 				}
-		}//end of the new_user_registration function
-	
-
+	}//end of the new_user_registration function
 	public function create_email($sendmail){
 		if($sendmail['flag']==1){
 			$url=site_url('Verify/email_verify/'.$sendmail['EmailId'].'/'.$sendmail['HashKey']);	
@@ -219,8 +168,6 @@ public function  new_user_subscription() {
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Actionable emails e.g. reset password</title>
-
-
 <style type="text/css">
 img {
 max-width: 100%;
@@ -271,9 +218,7 @@ background-color: #f6f6f6;
 }
 </style>
 </head>
-
 <body itemscope itemtype="http://schema.org/EmailMessage" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6">
-
 <table class="body-wrap" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6"><tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
 		<td class="container" w0idth="600" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto;" valign="top">
 			<div class="content" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
@@ -283,7 +228,6 @@ background-color: #f6f6f6;
 								
 										Dear '.$name.'
 									</td>
-
 										<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
 								
 										Thank you for registering on Propchunk.com.	As next step, please confirm your email address by clicking the link below.
@@ -291,7 +235,6 @@ background-color: #f6f6f6;
 								</tr>
 								<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
 									Please note that only verified users can access their accounts on Propchunk.com and receive offer/alerts in inbox. 
-
 									Please let us know if you face any problem in verifying your account.</td>
 								</tr>
 								<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" itemprop="handler" itemscope itemtype="http://schema.org/HttpActionHandler" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
@@ -309,10 +252,9 @@ background-color: #f6f6f6;
 	</tr></table></body>
 </html>
  ';	
-
+ $subject="Activation Email";
 		}
-		else{
-
+		elseif($sendmail['flag']==2){
 			$url=site_url('Verify/forget_password/'.$sendmail['EmailId'].'/'.$sendmail['HashKey']);
 		$message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
@@ -320,8 +262,6 @@ background-color: #f6f6f6;
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Actionable emails e.g. reset password</title>
-
-
 <style type="text/css">
 img {
 max-width: 100%;
@@ -372,9 +312,7 @@ background-color: #f6f6f6;
 }
 </style>
 </head>
-
 <body itemscope itemtype="http://schema.org/EmailMessage" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6">
-
 <table class="body-wrap" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6"><tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
 		<td class="container" width="600" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto;" valign="top">
 			<div class="content" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
@@ -384,7 +322,6 @@ background-color: #f6f6f6;
 								
 										Dear User
 									</td>
-
 								<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 								<td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
 								
@@ -418,32 +355,14 @@ background-color: #f6f6f6;
 	</tr></table></body>
 </html>
  ';
-		}
-		$this->load->library('email');
-      	$this->email->set_newline("\r\n");
-      	$this->email->from('hello@propchunk.com'); // change it to yours
-      	$this->email->to($sendmail['EmailId']);// change it to yours
-
-		$this->email->subject('Activate Your Account');
-		$this->email->message($message);
-      	$this->email->send();
-
-		
-	}
-
-
-
-	public function create_email1($sendmail){
-		if($sendmail['flag']==1){
-		
-			$message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ $subject="forget password";
+		}else{
+						$message='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;">
 <head>
 <meta name="viewport" content="width=device-width" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Actionable emails e.g. reset password</title>
-
-
 <style type="text/css">
 img {
 max-width: 100%;
@@ -494,9 +413,7 @@ background-color: #f6f6f6;
 }
 </style>
 </head>
-
 <body itemscope itemtype="http://schema.org/EmailMessage" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; width: 100% !important; height: 100%; line-height: 1.6em; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6">
-
 <table class="body-wrap" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; background-color: #f6f6f6; margin: 0;" bgcolor="#f6f6f6"><tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
 		<td class="container" w0idth="600" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; display: block !important; max-width: 600px !important; clear: both !important; margin: 0 auto;" valign="top">
 			<div class="content" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; max-width: 600px; display: block; margin: 0 auto; padding: 20px;">
@@ -506,7 +423,6 @@ background-color: #f6f6f6;
 								
 									
 									</td>
-
 										<tr style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; margin: 0;"><td class="content-block" style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0; padding: 0 0 20px;" valign="top">
 								
 										Thank you for subscribing on Propchunk.com.
@@ -523,21 +439,21 @@ background-color: #f6f6f6;
 		<td style="font-family: Helvetica Neue,Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 14px; vertical-align: top; margin: 0;" valign="top"></td>
 	</tr></table></body>
 </html>';
-		}
 
+$subject="Thanks for Subscribing Us";
+
+
+		}
 		$this->load->library('email');
       	$this->email->set_newline("\r\n");
-      	$this->email->from('hello@propchunk.com'); // change it to yours
+      	$this->email->from('hello@propchunk.com','Propchunk.com'); // change it to yours
       	$this->email->to($sendmail['EmailId']);// change it to yours
-
-		$this->email->subject('Subscription Successfull.');
+		$this->email->subject($subject);
 		$this->email->message($message);
       	$this->email->send();
-echo"hii";
 		
 	}
 
+
 }
-
 ?>
-
